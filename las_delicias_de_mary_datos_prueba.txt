@@ -1,0 +1,58 @@
+-- =====================================================================
+-- DATOS DE PRUEBA - LAS DELICIAS DE MARY
+-- Ejecutar DESPUÉS del script de tablas, con las tablas vacías.
+--
+-- Usuarios para iniciar sesión:
+--   admin      / admin123      (Administrador)
+--   mesero1    / mesero123     (Mesero)
+--   cocinero1  / cocinero123   (Cocinero)
+-- Las contraseñas se guardan cifradas (bcrypt), como lo hace Laravel.
+-- =====================================================================
+
+USE las_delicias_de_mary;
+
+-- Roles
+INSERT INTO roles (nombre) VALUES
+  ('ADMINISTRADOR'), ('MESERO'), ('COCINERO');
+
+-- Usuarios (id_rol: 1 = Administrador, 2 = Mesero, 3 = Cocinero)
+INSERT INTO usuarios (id_rol, nombre, usuario, contrasena_hash) VALUES
+  (1, 'Administrador', 'admin',     '$2y$12$r5pfLDhnN6k5MJkNrAXrtei8JYdqvnyAmtlitl5xjPSSVxF3PIbpK'),
+  (2, 'Mesero de prueba',   'mesero1',   '$2y$12$759Sm8..qR4dLfozBTxDAeOKhfa.UzeANSe340XY7twNK6vpqIoWa'),
+  (3, 'Cocinero de prueba', 'cocinero1', '$2y$12$xAdSP4DNkDmeTKPdRZRSP.LKMt8vj8DJE23jTgX9JXihB7VT80Xr2');
+
+-- Mesas (número, capacidad)
+INSERT INTO mesas (numero, capacidad) VALUES
+  (1, 4), (2, 4), (3, 4), (4, 4), (5, 4), (6, 4),
+  (7, 6), (8, 6);
+
+-- Insumos para armar los platos
+INSERT INTO insumos (nombre, tipo) VALUES
+  ('Arroz', 'BASE'),
+  ('Frijoles', 'PRINCIPIO'),
+  ('Lentejas', 'PRINCIPIO'),
+  ('Pastas', 'PRINCIPIO'),
+  ('Garbanzos', 'PRINCIPIO'),
+  ('Carne de cerdo asada', 'PROTEINA'),
+  ('Pollo a la plancha', 'PROTEINA'),
+  ('Carne de res asada', 'PROTEINA'),
+  ('Chuleta de pollo', 'PROTEINA'),
+  ('Platano maduro', 'ACOMPANAMIENTO'),
+  ('Ensalada', 'ACOMPANAMIENTO'),
+  ('Papa criolla', 'ACOMPANAMIENTO');
+
+-- Categorías del menú fijo
+INSERT INTO categorias (nombre) VALUES
+  ('Especiales del dia'), ('Jugos'), ('Gaseosas'), ('Adicionales');
+
+-- Platos del menú fijo (id_categoria: 1 = Especiales, 2 = Jugos, 3 = Gaseosas, 4 = Adicionales)
+INSERT INTO platos (id_categoria, nombre, descripcion, precio) VALUES
+  (1, 'Sancocho de gallina', 'Con arroz, aguacate y arepa', 22000.00),
+  (1, 'Bandeja paisa', 'Frijoles, arroz, chicharron, huevo, carne molida, maduro y arepa', 25000.00),
+  (2, 'Jugo de mora en agua', NULL, 5000.00),
+  (2, 'Jugo de lulo en leche', NULL, 6000.00),
+  (3, 'Gaseosa personal', '400 ml', 4000.00),
+  (3, 'Gaseosa litro', '1,5 litros', 7000.00),
+  (4, 'Porcion de patacon', NULL, 3500.00),
+  (4, 'Huevo frito', NULL, 2000.00),
+  (4, 'Porcion de arroz', NULL, 3000.00);
